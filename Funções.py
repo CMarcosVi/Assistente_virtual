@@ -174,6 +174,24 @@ def abrirVsCode():
 abrirVsCode()
 
 
+# In[117]:
+
+
+def abrirGitHub():
+     webbrowser.open_new('https://github.com/')
+        
+abrirGitHub()
+
+
+# In[118]:
+
+
+def youTube():
+    webbrowser.open_new('https://youtube.com/')
+    
+youTube()
+
+
 # In[ ]:
 
 
