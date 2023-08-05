@@ -4,6 +4,7 @@ import time
 import speech_recognition as sr
 import schedule
 import requests
+import pyttsx3
 
 '''
 def capture_audio():
@@ -239,32 +240,72 @@ def menu():
         print("10. Consumo diario de Nutrientes e vitaminas")
         print("11. IMC")
         print("12. Sair do programa")
+        engine = pyttsx3.init()
+        engine.say("Olá, Escolha alguma das opções para executar")
+        engine.runAndWait()
+        engine.stop()
 
         opcao = input("Escolha uma opção: ")
 
         if opcao == "1":
+            engine.say("Abrindo valorant,aguarde por favor")
+            engine.runAndWait()
+            engine.stop()
             abrir_valorant()
         elif opcao == "2":
+            engine.say("Abrindo League of legends,aguarde Por favor")
+            engine.runAndWait()
+            engine.stop()
             abrir_Lol()
         elif opcao == "3":
+            engine.say("Abrindo steam,aguarde Por favor")
+            engine.runAndWait()
+            engine.stop()
             abrir_Steam()
         elif opcao == "4":
+            engine.say("Abrindo steam,aguarde Por favor")
+            engine.runAndWait()
+            engine.stop()
             abrir_Epic()
         elif opcao == "5":
+            engine.say("Abrindo Visual Studio Code,aguarde Por favor")
+            engine.runAndWait()
+            engine.stop()
             abrir_Vscode()
         elif opcao == "6":
+            engine.say("Abrindo Obsidian,aguarde Por favor")
+            engine.runAndWait()
+            engine.stop()
             abrir_Obsidian()
         elif opcao == "7":
+            engine.say("Abrindo Chrome,aguarde Por favor")
+            engine.runAndWait()
+            engine.stop()
             abrir_Chrome()
         elif opcao == "8":
+            engine.say("Abrindo Firefox,aguarde Por favor")
+            engine.runAndWait()
+            engine.stop()
             abrir_Firefox()
         elif opcao == "9":
+            engine.say("Pesquisando cotações Do Dolar,Euro e Bitcoin")
+            engine.runAndWait()
+            engine.stop()
             cotacoes()
         elif opcao == "10":
+            engine.say("Informaremos o seu consumo diario de MacroNutrientes e MicroNutrientes")
+            engine.runAndWait()
+            engine.stop()
             consumoDiario()
         elif opcao == "11":
+            engine.say("Insira as informações para que possamos calcular seu IMC")
+            engine.runAndWait()
+            engine.stop()
             calculo_do_IMC()
         elif opcao == "12":
+            engine.say("Ate Logo")
+            engine.runAndWait()
+            engine.stop()
             print("Programa encerrado.")
             break
         else:

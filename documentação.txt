@@ -1,0 +1,7 @@
+bibliotecas
+- speech_recognition
+- pyautogui
+- time
+- schedule
+- pyttsx3(biblioteca de simulação de fala de uma IA)
+- pywhatkit(Facilita a automação de ações em sites, como busca no Google, reprodução de vídeos no YouTube etc.)
