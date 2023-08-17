@@ -2,7 +2,6 @@ import pyautogui
 import os
 import time
 import speech_recognition as sr
-import schedule
 import requests
 import pyttsx3
 
@@ -33,6 +32,17 @@ if __name__ == "__main__":
             print("Assistente encerrado.")
             break
 '''
+def hora_local_data():
+    url = "http://worldtimeapi.org/api/ip"
+    response= requests.get(url)
+    data = response.json()
+    if response.status_code == 200:
+        return data['datetime']
+        
+    else:
+        return "Erro não conseguimos estabelecer sua localização"
+    
+
 
 def abrir_valorant():
     def is_valorant_installed_windows():
@@ -166,6 +176,31 @@ def obter_cotacoes():
         print("Erro ao obter as cotações.")
         return None
     
+def procurar_cep():
+    valor_cep = input("Digite o CEP desejado: ")
+    url = f"https://viacep.com.br/ws/{valor_cep}/json/"
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        data = response.json()
+        if "erro" not in data:
+            print("Informações do CEP:")
+            print(f"CEP: {data['cep']}")
+            print(f"Logradouro: {data['logradouro']}")
+            print(f"Complemento: {data['complemento']}")
+            print(f"Bairro: {data['bairro']}")
+            print(f"Localidade: {data['localidade']}")
+            print(f"UF: {data['uf']}")
+            print(f"Ibge: {data['ibge']}")
+            print(f"Gia: {data['gia']}")
+            print(f"DDD: {data['ddd']}")
+            print(f"Siafi: {data['siafi']}")
+            time.sleep(5)
+        else:
+            print("CEP não encontrado")
+    else:
+        print("Erro na requisição")
+
 def cotacoes():
     cotacoes = obter_cotacoes()
     if cotacoes:
@@ -239,7 +274,9 @@ def menu():
         print("9. Verificar cotação de moedas")
         print("10. Consumo diario de Nutrientes e vitaminas")
         print("11. IMC")
-        print("12. Sair do programa")
+        print("12. Procurar CEP")
+        print("13. Pegar Hora e Data")
+        print("14. Sair do programa")
         engine = pyttsx3.init()
         engine.say("Olá, Escolha alguma das opções para executar")
         engine.runAndWait()
@@ -303,6 +340,18 @@ def menu():
             engine.stop()
             calculo_do_IMC()
         elif opcao == "12":
+            engine.say("Insira o CEP que deseja buscar")
+            engine.runAndWait()
+            engine.stop()
+            procurar_cep()
+        elif opcao == "13":
+            current_time = hora_local_data()
+            date_part, time_part = current_time.split("T")
+            time_part = time_part.split(".")[0]
+            print("Data atual:", date_part)
+            print("Hora atual:", time_part)
+            time.sleep(5)
+        elif opcao == "14":
             engine.say("Ate Logo")
             engine.runAndWait()
             engine.stop()
