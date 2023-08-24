@@ -5,7 +5,12 @@ import speech_recognition as sr
 import requests
 import pyttsx3
 
-'''
+def iniciacao():
+    try :
+        capture_audio()
+    except:
+        menu()
+
 def capture_audio():
     recognizer = sr.Recognizer()
 
@@ -17,7 +22,7 @@ def capture_audio():
     try:
         text = recognizer.recognize_google(audio, language="pt-BR")
         print(f"Você disse: {text}")
-        return text
+        menu2(text)
     except sr.UnknownValueError:
         print("Não foi possível reconhecer o áudio.")
         return None
@@ -25,13 +30,106 @@ def capture_audio():
         print("Não foi possível acessar o serviço de reconhecimento de fala.")
         return None
 
-if __name__ == "__main__":
+
+def menu2(text):
+    engine = pyttsx3.init()
     while True:
-        command = capture_audio()
-        if command and "parar" in command.lower():
-            print("Assistente encerrado.")
+        print("\n-- Menu --")
+        print("1. Abrir/Verificar se o Valorant está instalado")
+        print("2  Abrir/Verificar League of Legends")
+        print("3. Abrir/Verificar se o Steam está instalado")
+        print("4. Abrir/Verificar se o Epic está instalado")
+        print("5. Abrir/Verificar se o Vs Code está instalado")
+        print("6. Abrir/Verificar se o Obsidian está instalado")
+        print("7. Abrir/Verificar se o Chrome está instalado")
+        print("8. Abrir/Verificar se o FireFox está instalado")
+        print("9. Verificar cotação de moedas")
+        print("10. Consumo diario de Nutrientes e vitaminas")
+        print("11. IMC")
+        print("12. Procurar CEP")
+        print("13. Pegar Hora e Data")
+        print("14. Sair do programa")
+        engine = pyttsx3.init()
+        engine.say("Olá, Escolha alguma das opções para executar")
+        engine.runAndWait()
+        engine.stop()
+        if text == "1":
+            engine.say("Abrindo valorant,aguarde por favor")
+            engine.runAndWait()
+            engine.stop()
+            abrir_valorant()
+        elif text == "2":
+            engine.say("Abrindo League of legends,aguarde Por favor")
+            engine.runAndWait()
+            engine.stop()
+            abrir_Lol()
+        elif text == "3":
+            engine.say("Abrindo steam,aguarde Por favor")
+            engine.runAndWait()
+            engine.stop()
+            abrir_Steam()
+        elif text == "4":
+            engine.say("Abrindo steam,aguarde Por favor")
+            engine.runAndWait()
+            engine.stop()
+            abrir_Epic()
+        elif text == "5":
+            engine.say("Abrindo Visual Studio Code,aguarde Por favor")
+            engine.runAndWait()
+            engine.stop()
+            abrir_Vscode()
+        elif text == "6":
+            engine.say("Abrindo Obsidian,aguarde Por favor")
+            engine.runAndWait()
+            engine.stop()
+            abrir_Obsidian()
+        elif text == "7":
+            engine.say("Abrindo Chrome,aguarde Por favor")
+            engine.runAndWait()
+            engine.stop()
+            abrir_Chrome()
+        elif text == "8":
+            engine.say("Abrindo Firefox,aguarde Por favor")
+            engine.runAndWait()
+            engine.stop()
+            abrir_Firefox()
+        elif text == "9":
+            engine.say("Pesquisando cotações Do Dolar,Euro e Bitcoin")
+            engine.runAndWait()
+            engine.stop()
+            cotacoes()
+        elif text == "10":
+            engine.say("Informaremos o seu consumo diario de MacroNutrientes e MicroNutrientes")
+            engine.runAndWait()
+            engine.stop()
+            consumoDiario()
+        elif text == "11":
+            engine.say("Insira as informações para que possamos calcular seu IMC")
+            engine.runAndWait()
+            engine.stop()
+            calculo_do_IMC()
+        elif text == "12":
+            engine.say("Insira o CEP que deseja buscar")
+            engine.runAndWait()
+            engine.stop()
+            procurar_cep()
+        elif text == "13":
+            current_time = hora_local_data()
+            date_part, time_part = current_time.split("T")
+            time_part = time_part.split(".")[0]
+            print("Data atual:", date_part)
+            print("Hora atual:", time_part)
+            time.sleep(5)
+        elif text == "14":
+            engine.say("Ate Logo")
+            engine.runAndWait()
+            engine.stop()
+            print("Programa encerrado.")
             break
-'''
+        else:
+            print("Opção inválida. Tente novamente.")
+
+
 def hora_local_data():
     url = "http://worldtimeapi.org/api/ip"
     response= requests.get(url)
@@ -42,6 +140,8 @@ def hora_local_data():
     else:
         return "Erro não conseguimos estabelecer sua localização"
     
+
+
 
 
 def abrir_valorant():
@@ -363,5 +463,5 @@ def menu():
 
 if __name__ == "__main__":
     while True:
-        menu()
+        iniciacao()
     
