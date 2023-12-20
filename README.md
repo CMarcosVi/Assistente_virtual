@@ -20,6 +20,9 @@
 
 # Assistente virutal 0.25v Beta
 ### Atualizações
-- adição de função para fechamento simuntaneo do codigo com a interface grafica
-- correção de erro apos o fechamento do script
-- inicio de testes para a adição de comando de voz 
+- Adição de função para fechamento simuntaneo do codigo com a interface grafica
+- Correção de erro apos o fechamento do script
+- Inicio de testes para a adição de comando de voz
+- Aprimoramento da função 10:
+  - Agora ele gera um arquivo PDF com todas as informaçõe inves de mostrar no console
+  - O input de quilos da função deixou de ser no console e virou uma interface grafica
