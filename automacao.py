@@ -28,47 +28,42 @@ def iniciacao():
 
 
 class AnimatedCircles:
-        def __init__(self, root):
-            self.root = root
-            self.root.title("Animated Circles")
-            self.root.geometry("350x550")
-            self.root.configure(bg="black")
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Animated Circles")
+        self.root.geometry("350x550")
+        self.root.configure(bg="black")
 
-            self.canvas = tk.Canvas(root, width=350, height=550, bg="black", highlightthickness=0)
-            self.canvas.pack()
+        self.canvas = tk.Canvas(root, width=350, height=550, bg="black", highlightthickness=0)
+        self.canvas.pack()
 
-            self.outer_circle = self.create_outer_circle(175, 275)
-            self.animate()
+        self.outer_circle = self.create_outer_circle(175, 275)
+        self.animate()
 
-        def create_outer_circle(self, x, y):
-            outer_circle = self.canvas.create_oval(x - 25, y - 25, x + 25, y + 25, outline="white", width=2)
-            return outer_circle
+    def create_outer_circle(self, x, y):
+        outer_circle = self.canvas.create_oval(x - 25, y - 25, x + 25, y + 25, outline="white", width=2)
+        return outer_circle
 
-        def animate(self):
-            # Animação para criar um círculo transparente
-            self.animate_transparent_circle()
+    def animate(self):
+        # Animação para criar um círculo transparente
+        self.animate_transparent_circle()
 
-        def animate_transparent_circle(self):
-            inner_circle = self.canvas.create_oval(175 - 15, 275 - 15, 175 + 15, 275 + 15, outline="white", width=2, stipple="gray50")
+    def animate_transparent_circle(self):
+        inner_circle = self.canvas.create_oval(175 - 15, 275 - 15, 175 + 15, 275 + 15, outline="white", width=2, stipple="gray50")
 
-            # Agendamento da próxima etapa da animação (deletar o círculo transparente)
-            self.root.after(250, self.canvas.delete, inner_circle)
+        # Agendamento da próxima etapa da animação (deletar o círculo transparente)
+        self.root.after(250, self.canvas.delete, inner_circle)
 
-            # Agendamento da próxima etapa da animação
-            self.root.after(1000, self.animate)  # 2000ms (2 segundos) para a próxima animação
+        # Agendamento da próxima etapa da animação
+        self.root.after(1000, self.animate)  # 2000ms (2 segundos) para a próxima animação
+
+    def fechar(self):
+        self.root.destroy()
 
 def InterfaceCenter():
     root = tk.Tk()
     app = AnimatedCircles(root)
     root.mainloop()
-
-
-
-
-
-
-
-
 
 
 
@@ -361,7 +356,7 @@ def calculo_do_IMC():
 
 
 # menu de exibição das alternativas
-def menu():
+def menu(root):
     while True:
         print("\n-- Menu --")
         print("1. Abrir/Verificar se o Valorant está instalado")
@@ -459,15 +454,18 @@ def menu():
             engine.runAndWait()
             engine.stop()
             print("Programa encerrado.")
+            app = AnimatedCircles(root)
+            app.fechar()
             break
         else:
             print("Opção inválida. Tente novamente.")
 
 
 def main():
+    root = tk.Tk()
     interface_thread = Thread(target=InterfaceCenter)
     interface_thread.start()
-    menu()
+    menu(root)
     interface_thread.join()
 
 if __name__ == "__main__":
